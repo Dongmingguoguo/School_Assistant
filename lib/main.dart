@@ -17,7 +17,7 @@ class BlogApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
 
-       home: NavigationBar(),
+       home: MappingPage(auth: Auth(),),
 
        theme: ThemeData(
         primarySwatch: Colors.blue,
