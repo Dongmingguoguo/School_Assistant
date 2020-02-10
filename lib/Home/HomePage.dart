@@ -2,9 +2,7 @@ import 'package:final_project/Help_Center/Posts.dart';
 import 'package:final_project/Home/NavigationIconView.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/Home/Authentication.dart';
-import 'package:final_project/Help_Center/Upload.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:final_project/Home/NavigationBar.dart';
 
 class HomePage extends StatefulWidget {
   final AuthImplementation auth;
@@ -68,6 +66,7 @@ class _HomePageState extends State<HomePage> {
       print(e.toString());
     }
   }
+  
 
   Widget PostsUI(String image, String description, String date, String time) {
     return new Card(
