@@ -3,66 +3,65 @@ import 'package:final_project/Register/LoginRegisterPage.dart';
 import 'package:final_project/Home/HomePage.dart';
 import 'Authentication.dart';
 
-class MappingPage extends StatefulWidget{
-  
+class MappingPage extends StatefulWidget {
   final AuthImplementation auth;
 
   MappingPage({
-      this.auth,
-    });
-  State<StatefulWidget> createState(){
+    this.auth,
+  });
+  State<StatefulWidget> createState() {
     return _MappingPageState();
   }
 }
 
-enum AuthStatus{
+enum AuthStatus {
   notSignedIn,
   signedIn,
 }
 
-class _MappingPageState extends State<MappingPage>{
-  
+class _MappingPageState extends State<MappingPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
 
   @override
-    void initState(){
-      super.initState();
+  void initState() {
+    super.initState();
 
-      widget.auth.getCurrentUser().then((firebaseUserId){
-        setState(() {
-          authStatus = firebaseUserId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;  
-        });
-      });
-    }
-
-    void _signedIn(){
+    widget.auth.getCurrentUser().then((firebaseUserId) {
       setState(() {
-        authStatus = AuthStatus.signedIn;
+        authStatus = firebaseUserId == null
+            ? AuthStatus.notSignedIn
+            : AuthStatus.signedIn;
       });
-    }
+    });
+  }
 
-    void _signedOut(){
-      setState(() {
-        authStatus = AuthStatus.notSignedIn;
-      });
-    }
+  void _signedIn() {
+    setState(() {
+      authStatus = AuthStatus.signedIn;
+    });
+  }
 
-  
+  void _signedOut() {
+    setState(() {
+      authStatus = AuthStatus.notSignedIn;
+    });
+  }
+
   @override
-    Widget build(BuildContext context){
-      switch(authStatus){
-        case AuthStatus.notSignedIn:
+  Widget build(BuildContext context) {
+    switch (authStatus) {
+      case AuthStatus.notSignedIn:
         return new LoginRegisterPage(
           auth: widget.auth,
           onSignedIn: _signedIn,
         );
 
-        case AuthStatus.signedIn:
+      case AuthStatus.signedIn:
         return new HomePage(
           auth: widget.auth,
-          onSignedOut : _signedOut,
+          onSignedOut: _signedOut,
         );
-      }
-      return null;
     }
+    return null;
+  }
 }
