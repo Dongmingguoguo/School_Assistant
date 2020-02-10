@@ -1,13 +1,10 @@
 import 'package:final_project/Home/HomePage.dart';
 import 'package:final_project/Home/NavigationIconView.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/Help_Center/Posts.dart';
 import 'package:final_project/Home/NavigationIconView.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/Home/Authentication.dart';
 import 'package:final_project/Help_Center/Upload.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:final_project/Home/NavigationBar.dart';
+import 'package:final_project/menu/Menu.dart';
 
 class NavigationBar extends StatefulWidget {
   @override
@@ -50,7 +47,7 @@ class _NavigationBar extends State<NavigationBar>
     _pageList = <StatefulWidget>[
       new HomePage(),
       new Upload(),
-      new HomePage(),
+      new Menu(),
     ];
 
     _currentPage = _pageList[_currentIndex];
