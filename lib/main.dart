@@ -1,4 +1,5 @@
 import 'package:final_project/Home/Authentication.dart';
+import 'package:final_project/Home/NavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/Home/HomePage.dart';
 import 'package:final_project/Register/LoginRegisterPage.dart';
@@ -15,7 +16,9 @@ class BlogApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-       home: MappingPage(auth: Auth(),),
+
+       home: NavigationBar(),
+
        theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

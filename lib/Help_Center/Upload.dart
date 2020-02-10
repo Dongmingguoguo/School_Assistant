@@ -32,10 +32,10 @@ class _Upload extends State<Upload> {
     final form = formKey.currentState;
 
     if (form.validate()) {
-      form.save();
 
-      print("I am here");
+      form.save();
       return true;
+      
     }
     else{
       return false;
