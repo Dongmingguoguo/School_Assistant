@@ -1,8 +1,9 @@
-import 'package:final_project/Home/NavigationBar.dart';
+import 'package:final_project/Navigation/NavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/Register/LoginRegisterPage.dart';
 import 'Authentication.dart';
-import 'package:final_project/menu/Menu.dart';
+
+
 
 class MappingPage extends StatefulWidget {
   final AuthImplementation auth;
@@ -63,8 +64,7 @@ class _MappingPageState extends State<MappingPage> {
         return new NavigationBar( 
           auth: widget.auth,
           onSignedOut: _signedOut,
-          
-          );
+        );
     }
 
     return null;

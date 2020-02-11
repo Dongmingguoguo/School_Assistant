@@ -1,11 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:final_project/Home/HomePage.dart';
-import 'package:final_project/Home/NavigationIconView.dart';
-import 'package:flutter/material.dart';
-import 'package:final_project/Home/NavigationIconView.dart';
-import 'package:flutter/material.dart';
+import 'package:final_project/Navigation/NavigationIconView.dart';
 import 'package:final_project/Help_Center/Upload.dart';
 import 'package:final_project/menu/Menu.dart';
-import 'Authentication.dart';
+import 'package:final_project/Home/Authentication.dart';
 
 class NavigationBar extends StatefulWidget {
   final AuthImplementation auth;
@@ -19,13 +17,15 @@ class NavigationBar extends StatefulWidget {
   State<StatefulWidget> createState() => new _NavigationBar();
 }
 
-
-class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin {
+class _NavigationBar extends State<NavigationBar>
+    with TickerProviderStateMixin {
   AuthStatus authStatus = AuthStatus.notSignedIn;
   int _currentIndex = 0;
   List<NavigationIconView> _navigationViews;
   List<StatefulWidget> _pageList;
   StatefulWidget _currentPage;
+
+  
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     _pageList = <StatefulWidget>[
       new HomePage(),
       new Upload(),
-      new Menu(auth: Auth(),),
+      new Menu(),
     ];
 
     _currentPage = _pageList[_currentIndex];
@@ -75,8 +75,10 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     }
   }
 
-  Widget logout(){
-    _logoutUser();
+  void _signedOut() {
+    setState(() {
+      authStatus = AuthStatus.notSignedIn;
+    });
   }
 
   @override
@@ -87,10 +89,9 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
+    
     final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
         items: _navigationViews
             .map((NavigationIconView navigationIconView) =>
@@ -110,9 +111,20 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
 
     return new MaterialApp(
       home: new Scaffold(
-        body: new Center(child: _currentPage), 
+        appBar: AppBar(
+          title: new Text('School Assistant'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: _logoutUser,
+            ),
+          ]
+          
+        ),
+        body: new Center(child: _currentPage),
         bottomNavigationBar: bottomNavigationBar,
       ),
     );
   }
+  
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:final_project/Home/Authentication.dart';
 import 'package:final_project/Help_Center/DialogBox.dart';
+import 'package:final_project/Navigation/NavigationBar.dart';
 
 class LoginRegisterPage extends StatefulWidget {
   LoginRegisterPage({
@@ -45,6 +46,8 @@ class _LoginRegisterState extends State<LoginRegisterPage> {
           dialogBox.information(
               context, "Congratulations!", "You have logged in successfully!");
           print("Login userId = " + userId);
+          //new NavigationBar();
+
         } else {
           String userId = await widget.auth.SignUp(_email, _password);
           dialogBox.information(context, "Congratulations!",
@@ -158,7 +161,6 @@ class _LoginRegisterState extends State<LoginRegisterPage> {
         ),
       ];
     } else {
-      print("2");
       return [
         new RaisedButton(
           child:

@@ -1,18 +1,9 @@
-import 'package:final_project/Help_Center/Posts.dart';
-import 'package:final_project/Home/NavigationIconView.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/Home/Authentication.dart';
+import 'package:final_project/Help_Center/Posts.dart';
+import 'package:final_project/Navigation/NavigationIconView.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class HomePage extends StatefulWidget {
-  final AuthImplementation auth;
-  final VoidCallback onSignedOut;
-
-  HomePage({
-    this.auth,
-    this.onSignedOut,
-  });
-
   @override
   State<StatefulWidget> createState() {
     return _HomePageState();
@@ -53,15 +44,6 @@ class _HomePageState extends State<HomePage> {
         print('Length : $postsList.length');
       });
     });
-  }
-
-  void _logoutUser() async {
-    try {
-      await widget.auth.signOut();
-      widget.onSignedOut();
-    } catch (e) {
-      print(e.toString());
-    }
   }
 
   Widget PostsUI(String image, String description, String date, String time) {
@@ -108,9 +90,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Home"),
-      ),
       body: new Container(
           child: postsList.length == 0
               ? new Text("No blog Post available")
@@ -126,36 +105,4 @@ class _HomePageState extends State<HomePage> {
                 )),
     );
   }
-
-  /*
-  Widget xixi() {
-    BoxDecoration myBoxDecoration() {
-      return BoxDecoration(
-        color: Color(0xFFFF7043),
-        borderRadius: new BorderRadius.circular(30),
-        border: Border.all(
-          width: 1,
-        ),
-      );
-    }
-    return new Container(
-      width: 1000,
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            decoration: myBoxDecoration(),
-            height: 400,
-            width: 380,
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'dadadasd',
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-   */
 }

@@ -1,15 +1,14 @@
-import 'package:final_project/Home/Mapping.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/menu/GlobalConfig.dart';
 import 'package:final_project/Home/Authentication.dart';
 
 class Menu extends StatefulWidget {
   final AuthImplementation auth;
-  final VoidCallback onSignedOut;
+  final VoidCallback onSignedOut1;
 
   Menu({
     this.auth,
-    this.onSignedOut,
+    this.onSignedOut1,
   });
 
   @override
@@ -73,8 +72,7 @@ class _Menu extends State<Menu> {
                 borderRadius: new BorderRadius.all(new Radius.circular(6.0))),
             child: new FlatButton(
                 onPressed: () {
-                  new MappingPage();
-                  print("Press the button");
+                  _logoutUser();
                 },
                 child: new Container(
                   child: new ListTile(
@@ -96,13 +94,20 @@ class _Menu extends State<Menu> {
     );
   }
 
+  void _logoutUser() async {
+
+    try {
+      await widget.auth.signOut();
+      widget.onSignedOut1();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Menu'),
-        centerTitle: true,
-      ),
+      
       body: new SingleChildScrollView(
         child: new Container(
           child: new Column(

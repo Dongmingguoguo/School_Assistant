@@ -1,5 +1,6 @@
 
-import 'package:final_project/Home/NavigationBar.dart';
+import 'package:final_project/Navigation/NavigationBar.dart';
+import 'package:final_project/Navigation/NavigationIconView.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -98,10 +99,7 @@ class _Upload extends State<Upload> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Upload Image2'),
-        centerTitle: true,
-      ),
+      
       body: new Center(
         child: sampleImage == null ? Text('Select an Image') : enableUpload(),
       ),
