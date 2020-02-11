@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
   List<StatefulWidget> _pageList;
   StatefulWidget _currentPage;
 
-
   @override
   void initState() {
     super.initState();
@@ -56,8 +55,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  
-
   void _logoutUser() async {
     try {
       await widget.auth.signOut();
@@ -66,7 +63,6 @@ class _HomePageState extends State<HomePage> {
       print(e.toString());
     }
   }
-  
 
   Widget PostsUI(String image, String description, String date, String time) {
     return new Card(
@@ -109,7 +105,6 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -129,7 +124,6 @@ class _HomePageState extends State<HomePage> {
                         postsList[index].time);
                   },
                 )),
-      
     );
   }
 

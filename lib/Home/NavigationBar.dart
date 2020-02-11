@@ -7,7 +7,6 @@ import 'package:final_project/Help_Center/Upload.dart';
 import 'package:final_project/menu/Menu.dart';
 import 'Authentication.dart';
 
-
 class NavigationBar extends StatefulWidget {
   final AuthImplementation auth;
   final VoidCallback onSignedOut;
@@ -20,19 +19,13 @@ class NavigationBar extends StatefulWidget {
   State<StatefulWidget> createState() => new _NavigationBar();
 }
 
-enum AuthStatus {
-  notSignedIn,
-  signedIn,
-}
 
 class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin {
-
+  AuthStatus authStatus = AuthStatus.notSignedIn;
   int _currentIndex = 0;
   List<NavigationIconView> _navigationViews;
   List<StatefulWidget> _pageList;
   StatefulWidget _currentPage;
-
-  
 
   @override
   void initState() {
@@ -63,7 +56,7 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     _pageList = <StatefulWidget>[
       new HomePage(),
       new Upload(),
-      new Menu(),
+      new Menu(auth: Auth(),),
     ];
 
     _currentPage = _pageList[_currentIndex];
@@ -73,7 +66,7 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     setState(() {});
   }
 
-   void _logoutUser() async {
+  void _logoutUser() async {
     try {
       await widget.auth.signOut();
       widget.onSignedOut();
@@ -90,76 +83,32 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     }
   }
 
-  Widget logout() {
-    return new Container(
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            margin:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
-            decoration: new BoxDecoration(
-                color: Colors.white10,
-                borderRadius: new BorderRadius.all(new Radius.circular(6.0))),
-            child: new FlatButton(
-                onPressed: () {},
-                child: new Container(
-                  child: new ListTile(
-                    leading: new Container(
-                      child: new CircleAvatar(
-                          backgroundImage: new NetworkImage(
-                              "https://pic1.zhimg.com/v2-ec7ed574da66e1b495fcad2cc3d71cb9_xl.jpg"),
-                          radius: 20.0),
-                    ),
-                    title: new Container(
-                      margin: const EdgeInsets.only(bottom: 2.0),
-                      child: new Text("learner"),
-                    ),
-                    subtitle: new Container(
-                      margin: const EdgeInsets.only(top: 2.0),
-                      child: new Text("查看或编辑个人主页"),
-                    ),
-                  ),
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-
-  
 
   @override
   Widget build(BuildContext context) {
-   
+
     final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
-      items: _navigationViews
-          .map((NavigationIconView navigationIconView) =>
-              navigationIconView.item)
-          .toList(),
-      currentIndex: _currentIndex,
-      fixedColor: Colors.blue,
-      type: BottomNavigationBarType.fixed,
-      onTap: (int index){
-        setState(() {
-          _navigationViews[_currentIndex].controller.reverse();
-          _currentIndex = index;
-          _navigationViews[_currentIndex].controller.forward();
-          _currentPage = _pageList[_currentIndex];
+        items: _navigationViews
+            .map((NavigationIconView navigationIconView) =>
+                navigationIconView.item)
+            .toList(),
+        currentIndex: _currentIndex,
+        fixedColor: Colors.blue,
+        type: BottomNavigationBarType.fixed,
+        onTap: (int index) {
+          setState(() {
+            _navigationViews[_currentIndex].controller.reverse();
+            _currentIndex = index;
+            _navigationViews[_currentIndex].controller.forward();
+            _currentPage = _pageList[_currentIndex];
+          });
         });
-      }
-    );
 
     return new MaterialApp(
-      
       home: new Scaffold(
-        body: new Center(
-          child: _currentPage
-        ),
+        body: new Center(child: _currentPage), 
         bottomNavigationBar: bottomNavigationBar,
       ),
-
     );
-
-   
   }
 }

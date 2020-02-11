@@ -1,5 +1,5 @@
 
-import 'package:final_project/Home/HomePage.dart';
+import 'package:final_project/Home/NavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -89,7 +89,7 @@ class _Upload extends State<Upload> {
       context, 
       MaterialPageRoute(builder: (context)
       {
-        return new HomePage();
+        return new NavigationBar();
       })
       );
   }
