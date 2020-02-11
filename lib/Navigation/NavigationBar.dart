@@ -25,8 +25,6 @@ class _NavigationBar extends State<NavigationBar>
   List<StatefulWidget> _pageList;
   StatefulWidget _currentPage;
 
-  
-
   @override
   void initState() {
     super.initState();
@@ -55,7 +53,7 @@ class _NavigationBar extends State<NavigationBar>
 
     _pageList = <StatefulWidget>[
       new HomePage(),
-      new Upload(),
+      null,
       new Menu(),
     ];
 
@@ -91,7 +89,6 @@ class _NavigationBar extends State<NavigationBar>
 
   @override
   Widget build(BuildContext context) {
-    
     final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
         items: _navigationViews
             .map((NavigationIconView navigationIconView) =>
@@ -115,16 +112,24 @@ class _NavigationBar extends State<NavigationBar>
           title: new Text('School Assistant'),
           actions: <Widget>[
             IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Upload()));
+              },
+            ),
+            
+            IconButton(
               icon: Icon(Icons.exit_to_app),
               onPressed: _logoutUser,
             ),
-          ]
-          
+          ],
         ),
         body: new Center(child: _currentPage),
         bottomNavigationBar: bottomNavigationBar,
       ),
     );
   }
-  
 }

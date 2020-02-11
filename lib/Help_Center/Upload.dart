@@ -99,6 +99,12 @@ class _Upload extends State<Upload> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(
+         leading: IconButton(
+           icon: Icon(Icons.arrow_back),
+           onPressed: (){Navigator.of(context).pop();},
+         ),
+      ),
       
       body: new Center(
         child: sampleImage == null ? Text('Select an Image') : enableUpload(),
