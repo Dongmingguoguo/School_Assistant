@@ -1,3 +1,4 @@
+import 'package:final_project/Home/Mapping.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/menu/GlobalConfig.dart';
 import 'package:final_project/Home/Authentication.dart';
@@ -72,6 +73,7 @@ class _Menu extends State<Menu> {
                 borderRadius: new BorderRadius.all(new Radius.circular(6.0))),
             child: new FlatButton(
                 onPressed: () {
+                  new MappingPage();
                   print("Press the button");
                 },
                 child: new Container(

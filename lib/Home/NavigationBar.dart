@@ -75,6 +75,10 @@ class _NavigationBar extends State<NavigationBar> with TickerProviderStateMixin 
     }
   }
 
+  Widget logout(){
+    _logoutUser();
+  }
+
   @override
   void dispose() {
     super.dispose();

@@ -1,3 +1,4 @@
+import 'package:final_project/Home/NavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/Register/LoginRegisterPage.dart';
 import 'Authentication.dart';
@@ -50,6 +51,7 @@ class _MappingPageState extends State<MappingPage> {
 
   @override
   Widget build(BuildContext context) {
+  
     switch (authStatus) {
       case AuthStatus.notSignedIn:
         return new LoginRegisterPage(
@@ -58,10 +60,11 @@ class _MappingPageState extends State<MappingPage> {
         );
 
       case AuthStatus.signedIn:
-        return new Menu(
+        return new NavigationBar( 
           auth: widget.auth,
           onSignedOut: _signedOut,
-        );
+          
+          );
     }
 
     return null;
