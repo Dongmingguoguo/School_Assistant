@@ -4,6 +4,8 @@ import 'package:final_project/Navigation/NavigationIconView.dart';
 import 'package:final_project/Help_Center/Upload.dart';
 import 'package:final_project/menu/Menu.dart';
 import 'package:final_project/Home/Authentication.dart';
+import 'package:final_project/BBS/bbs.dart';
+import 'package:final_project/Home/todolist.dart';
 
 class NavigationBar extends StatefulWidget {
   final AuthImplementation auth;
@@ -52,8 +54,8 @@ class _NavigationBar extends State<NavigationBar>
     }
 
     _pageList = <StatefulWidget>[
-      new HomePage(),
-      null,
+      new Todolist(),
+      new BBS(),
       new Menu(),
     ];
 
